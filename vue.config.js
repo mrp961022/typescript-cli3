@@ -8,5 +8,5 @@ module.exports = {
         port: 8888 //端口
     },
 
-    productionSourceMap: false
+    productionSourceMap: false // 是否生成map文件
 }
