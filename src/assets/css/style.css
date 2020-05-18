@@ -17,3 +17,7 @@
     border: 1px solid green;
     color: white;
 }
+.about{
+    height: 400px;
+    max-height: 800px;
+}
