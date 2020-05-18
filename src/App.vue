@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="blue-ele">
         <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
         <router-view />
     </div>
@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
-
+import HelloWorld from "@/components/HelloWorld.vue";
+import '@/assets/css/style.css'
 @Component({
     components: {
         HelloWorld
