@@ -47,3 +47,11 @@ module.exports = {
 }
 ```
 #### yarn serve / npm run serve 或者 vue ui 在ui页面进行操作
+
+#### src 根目录的.d.ts文件为ts语法的忽略
+
+```
+declare module *** // 忽略模块
+declare ***  // 忽略方法、变量等
+
+```
