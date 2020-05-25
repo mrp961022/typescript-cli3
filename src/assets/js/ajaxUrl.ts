@@ -16,12 +16,12 @@ export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
         let data = config.data || {};
         config.type == config.type.toLocaleLowerCase()
-        let urlData: string = '?' + Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
+        let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
         // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [['a',1],['b',2]]
         // 箭头函数不带大括号相当于{return ***}
         let xhr = new XMLHttpRequest();
         if (config.type.toLocaleLowerCase() == 'get') {
-            xhr.open(config.type, `${config.url}${urlData.slice(1)}`, true);
+            xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
         } else {
             xhr.open(config.type, `${config.url}`, true);
         }
