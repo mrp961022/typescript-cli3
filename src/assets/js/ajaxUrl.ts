@@ -29,7 +29,7 @@ export function ajax(config: Config) {
             xhr.setRequestHeader('Content-Type', config.contentType)
             xhr.send(urlData);
         } else {
-            config.type === 'get' ? xhr.send() : xhr.send(JSON.stringify(data));
+            xhr.send(config.type === 'get' ? null : JSON.stringify(data))
         }
         xhr.timeout = (config.timeOut || 6) * 1000;
         xhr.ontimeout = function (event) {
