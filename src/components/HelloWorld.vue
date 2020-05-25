@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        <child1 @editHandleEmit="editHandle" :userName="'老王'" :food="'吃肉'" />
+        <child1 @editHandleEmit="editHandle" userName="老王" food="吃肉" />
     </div>
 </template>
 
