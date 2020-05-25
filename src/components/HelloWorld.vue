@@ -1,20 +1,29 @@
 <template>
     <div class="hello">
-        <h1>{{ msg }}</h1>
-        <child1 @editHandleEmit="editHandle" :newMsg="'今天吃肉肉吗'" />
+        <child1 @editHandleEmit="editHandle" :userName="'老王'" :food="'吃肉'" />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import child1 from "./HelloChild/child1.vue";
+import { ajax } from "@/assets/js/ajaxUrl";
 @Component({
+    name: "helloWorld",
     components: {
         child1
     }
 })
 export default class HelloWorld extends Vue {
-    @Prop() private msg!: string;
+    mounted() {
+        ajax({ type: "get", url: "http://localhost:8888/county.json" })
+            .then(reposne => {
+                console.log(reposne);
+            })
+            .catch(reject => {
+                console.log(reject);
+            });
+    }
     editHandle(msg: string) {
         console.log(msg);
     }
