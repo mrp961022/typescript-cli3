@@ -12,7 +12,7 @@ interface DataObj {
     [index: string]: number | string | Array<string | number> | DataArr // 定义入参类型
 }
 export function ajax(config: Config) {
-    return new Promise((resolve: (value: object) => void, reject) => { // 定义返回值类型为字符型
+    return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
         let data = config.data || {};
         config.type == config.type.toLocaleLowerCase()
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
@@ -34,7 +34,7 @@ export function ajax(config: Config) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    resolve(JSON.parse(xhr.responseText))
+                    resolve(xhr.responseText)
                 } else {
                     reject(`${config.type.toUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
                 }

@@ -33,7 +33,7 @@ export default class HelloWorld extends Vue {
             // contentType: "application/x-www-form-urlencoded;charset=UTF-8" // post入参时如果需要就加
         })
             .then(reposne => {
-                console.log(reposne);
+                console.table(JSON.parse(reposne).data[0]);
             })
             .catch(reject => {
                 console.log(reject);
