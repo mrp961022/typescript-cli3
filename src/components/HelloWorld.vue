@@ -28,7 +28,8 @@ export default class HelloWorld extends Vue {
         console.log(`%c${this.$props.isSix}`, "background:#41b883;color:#fff;border-radius:3px;padding:0 3px;");
         ajax({
             type: "get",
-            url: "http://localhost:8888/county.json" // vueCli3中静态json放在public中直接使用url访问
+            url: "http://localhost:8888/county.json", // vueCli3中静态json放在public中直接使用url访问
+            timeOut:2000,
             // data: { name: "1", age: 2, sex: "male" },
             // contentType: "application/x-www-form-urlencoded;charset=UTF-8" // post入参时如果需要就加
         })
