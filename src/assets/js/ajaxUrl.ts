@@ -4,6 +4,7 @@ interface Config {
     data?: DataObj; // 入参 没有就不填
     dataType?: string; // 返参类型
     contentType?: string; // 请求头 默认application/json
+    timeOut?: number; // 超时时间 默认6秒
 }
 interface DataArr {
     [index: number]: object // 定义一个对象数组类型
@@ -30,7 +31,10 @@ export function ajax(config: Config) {
         } else {
             config.type === 'get' ? xhr.send() : xhr.send(JSON.stringify(data));
         }
-
+        xhr.timeout = config.timeOut || 6000;
+        xhr.ontimeout = function (event) {
+            alert('请求超时！');
+        }
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) { // ajax请求最后一步 一共四步
                 if (xhr.status == 200) { // 状态码
