@@ -40,7 +40,7 @@ export function ajax(config: Config) {
                 if (xhr.status == 200) { // 状态码
                     resolve(xhr.responseText)
                 } else {
-                    reject(`${config.type.toUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
+                    reject(`${config.type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
                 }
             }
         }
