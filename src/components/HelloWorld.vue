@@ -24,8 +24,8 @@ export default class HelloWorld extends Vue {
     @Prop() private msg!: string; // !表示父组件必传
     mounted() {
         // 两种prop入参取值方式
-        console.log(`%c${this.msg}`,"color:#f00;"); 
-        console.log(`%c${this.$props.isSix}`,"color:#f00;")
+        console.log(`%c${this.msg}`, "color:#f00;");
+        console.log(`%c${this.$props.isSix}`, "color:#f00;");
         ajax({
             type: "get",
             url: "http://localhost:8888/county.json" // vueCli3中静态json放在public中直接使用url访问
@@ -36,7 +36,7 @@ export default class HelloWorld extends Vue {
                 console.table(JSON.parse(reposne).data[0]);
             })
             .catch(reject => {
-                console.log(reject);
+                console.assert(!reject, reject);
             });
     }
     editHandle(msg: string) {
