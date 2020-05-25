@@ -30,7 +30,7 @@ export default class HelloWorld extends Vue {
             type: "get",
             url: "http://localhost:8888/county.json", // vueCli3中静态json放在public中直接使用url访问
             timeOut:2000,
-            // data: { name: "1", age: 2, sex: "male" },
+            // data: { name: "1", age: 2, gender: "male" },
             // contentType: "application/x-www-form-urlencoded;charset=UTF-8" // post入参时如果需要就加
         })
             .then(reposne => {
