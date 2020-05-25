@@ -31,7 +31,7 @@ export function ajax(config: Config) {
         } else {
             config.type === 'get' ? xhr.send() : xhr.send(JSON.stringify(data));
         }
-        xhr.timeout = config.timeOut ? config.timeOut * 1000 : 6000;
+        xhr.timeout = (config.timeOut || 6) * 1000;
         xhr.ontimeout = function (event) {
             alert('请求超时！');
         }
