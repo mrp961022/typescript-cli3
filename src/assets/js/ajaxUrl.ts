@@ -32,8 +32,8 @@ export function ajax(config: Config) {
         }
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
+            if (xhr.readyState == 4) { // ajax请求最后一步 一共四步
+                if (xhr.status == 200) { // 状态码
                     resolve(xhr.responseText)
                 } else {
                     reject(`${config.type.toUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
