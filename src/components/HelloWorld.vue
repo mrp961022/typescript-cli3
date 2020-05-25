@@ -16,7 +16,7 @@ import { ajax } from "@/assets/js/ajaxUrl";
     props: {
         isSix: {
             type: String, // 定义类型为大写 如果赋值是小写
-            required: false
+            required: false // 是否必传 否
         }
     }
 })
