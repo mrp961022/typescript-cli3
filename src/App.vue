@@ -1,6 +1,5 @@
 <template>
     <div id="app" class="blue-ele">
-        <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
         <router-view />
     </div>
 </template>
