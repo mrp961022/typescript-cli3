@@ -20,10 +20,10 @@ export function ajax(config: Config) {
         // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [["a",1],["b",2]]
         // 箭头函数不带大括号相当于{return ***}
         let xhr = new XMLHttpRequest();
-        if (config.type.toLocaleLowerCase() == "get") {
-            xhr.open(config.type, `${config.url}${urlData ? `?${urlData}` : ""}`, true);
+        if (config.type.toLocaleLowerCase() == "get" && urlData) {
+            xhr.open(config.type, `${config.url}?${urlData}`, true);
         } else {
-            xhr.open(config.type, `${config.url}`, true);
+            xhr.open(config.type, config.url, true);
         }
         if (config.contentType) {
             xhr.setRequestHeader("Content-Type", config.contentType)
