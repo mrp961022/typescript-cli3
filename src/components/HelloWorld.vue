@@ -19,7 +19,7 @@ import { ajax } from "@/assets/js/ajaxUrl";
     },
     watch: {
         newHelloNum(newVal: number, oldVal: number): void {
-            console.log(`${oldVal} ${newVal} 第二种`)
+            console.log(`${oldVal} ${newVal} 第二种`);
         }
     },
     props: {
@@ -35,14 +35,10 @@ export default class HelloWorld extends Vue {
     newHelloNum: number = 0;
     mounted() {
         // 两种prop入参取值方式
-        console.log(
-            `%c${this.msg}`,
-            "background:#41b883;color:#fff;border-radius:3px;padding:0 3px;"
-        );
-        console.log(
-            `%c${this.$props.isSix}`,
-            "background:#41b883;color:#fff;border-radius:3px;padding:0 3px;"
-        );
+        const ConStyle: string =
+            "background:#41b883;color:#fff;border-radius:3px;padding:0 3px;";
+        console.log(`%c${this.msg}`, ConStyle);
+        console.log(`%c${this.$props.isSix}`, ConStyle);
         ajax({
             type: "get",
             url: "http://localhost:8888/county.json", // vueCli3中静态json放在public中直接使用url访问
@@ -62,7 +58,7 @@ export default class HelloWorld extends Vue {
     }
     @Watch("helloNum") // watch监听哪个
     getHelloNum(newVal: number, oldVal: number): void {
-        console.log(`${oldVal} ${newVal} 第一种`)
+        console.log(`${oldVal} ${newVal} 第一种`);
     }
 }
 </script>
