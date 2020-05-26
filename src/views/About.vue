@@ -54,7 +54,7 @@ export default class About extends Vue {
         HighCharts.chart("charts", option); // 或者 直接键入option对象 as object
     }
     aa() {
-        this.$store.commit("increment", 222);
+        this.$store.commit("increment", Math.ceil(Math.random() * 1000));
     }
     bb() {
         console.log(this.$store.state.count);
