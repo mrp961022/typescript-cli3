@@ -32,10 +32,10 @@ export function ajax(config: Config) {
             xhr.send(config.type === "get" ? null : JSON.stringify(data))
         }
         xhr.timeout = (config.timeOut || 6) * 1000;
-        xhr.ontimeout = function (event) {
+        xhr.ontimeout = (event) => {
             alert("请求超时！");
         }
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = () => {
             if (xhr.readyState == 4) { // ajax请求最后一步 一共四步
                 if (xhr.status == 200) { // 状态码
                     resolve(xhr.responseText)
