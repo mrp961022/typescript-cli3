@@ -4,23 +4,20 @@ interface Config {
     data?: DataObj; // 入参 没有就不填
     dataType?: string; // 返参类型
     contentType?: string; // 请求头 默认application/json
-    timeOut?: number; // 超时时间 默认6秒 单位秒
-}
-interface DataArr {
-    [index: number]: object // 定义一个对象数组类型
+    timeOut?: number | string; // 超时时间 默认6秒 单位秒
 }
 interface DataObj {
-    [index: string]: number | string | Array<string | number> | DataArr // 定义入参类型
+    [index: string]: number | string | Array<string | number> // 定义入参类型
 }
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
         let data = config.data || {};
-        config.type == config.type.toLocaleLowerCase()
+        config.type === config.type.toLocaleLowerCase()
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
         // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [["a",1],["b",2]]
         // 箭头函数不带大括号相当于{return ***}
         let xhr = new XMLHttpRequest();
-        if (config.type.toLocaleLowerCase() == "get" && urlData) {
+        if (config.type.toLocaleLowerCase() === "get" && urlData) {
             xhr.open(config.type, `${config.url}?${urlData}`, true);
         } else {
             xhr.open(config.type, config.url, true);
@@ -31,13 +28,13 @@ export function ajax(config: Config) {
         } else {
             xhr.send(config.type === "get" ? null : JSON.stringify(data))
         }
-        xhr.timeout = (config.timeOut || 6) * 1000;
+        xhr.timeout = (Number(config.timeOut) || 6) * 1000;
         xhr.ontimeout = (event) => {
             alert("请求超时！");
         }
         xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4) { // ajax请求最后一步 一共四步
-                if (xhr.status == 200) { // 状态码
+            if (xhr.readyState === 4) { // ajax请求最后一步 一共四步
+                if (xhr.status === 200) { // 状态码
                     resolve(xhr.responseText)
                 } else {
                     reject(`${config.type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
