@@ -12,9 +12,6 @@ interface DataObj {
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
         let data = config.data || {},timeOut=Number(config.timeOut);
-        if(isNaN(timeOut)){
-            alert("请输入数值或者数字字符型数据")
-        }
         config.type === config.type.toLocaleLowerCase()
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
         // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [["a",1],["b",2]]
