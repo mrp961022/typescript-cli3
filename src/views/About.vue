@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="about" id="charts"></div>
+    <div class="about">
+        <div id="charts"></div>
         <el-button>11232</el-button>
     </div>
 </template>

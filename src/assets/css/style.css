@@ -17,7 +17,13 @@
     border: 1px solid green;
     color: white;
 }
-.about{
+
+.about {
+    height: 88%;
+    width: 88%;
+}
+
+.about #charts {
     height: 400px;
     max-height: 800px;
 }
