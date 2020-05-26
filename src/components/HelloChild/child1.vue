@@ -11,6 +11,9 @@ import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 export default class HelloWorld extends Vue {
     @Prop() private userName!: string; // prop入参
     @Prop() private food!: string;
+    mounted(){
+        console.log(this.$store.state.count)
+    }
     @Emit("editHandleEmit") // 调用父组件的方法
     private editHandle(msg: string): string {
         return msg;
