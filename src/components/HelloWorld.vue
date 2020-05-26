@@ -1,7 +1,9 @@
 <template>
     <div class="hello">
         <child1 @editHandleEmit="editHandle" userName="老王" food="吃肉" />
-        <button @click="helloNum++">点击切换触发watch</button><br><br>
+        <button @click="helloNum++">点击切换触发watch</button>
+        <br />
+        <br />
         <button @click="newHelloNum++">另一种方式</button>
     </div>
 </template>

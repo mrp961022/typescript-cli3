@@ -13,7 +13,7 @@ interface DataObj {
     [index: string]: number | string | Array<string | number> | DataArr // 定义入参类型
 }
 export function ajax(config: Config) {
-    return new Promise((resolve: (value: string) => void, reject) => { // 定义返回值类型为字符型
+    return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
         let data = config.data || {};
         config.type == config.type.toLocaleLowerCase()
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
@@ -41,6 +41,11 @@ export function ajax(config: Config) {
                     resolve(xhr.responseText)
                 } else {
                     reject(`${config.type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
+                    if (xhr.statusText) { 
+                        alert(xhr.status) // 有返回值 5++ 4++ 状态报错
+                    } else {
+                        alert("断网啦！") // 没有返回值即为用户或服务器断网了
+                    }
                 }
             }
         }
