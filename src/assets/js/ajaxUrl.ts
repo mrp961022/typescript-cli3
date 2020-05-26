@@ -14,7 +14,6 @@ export function ajax(config: Config) {
         let data = config.data || {},timeOut=Number(config.timeOut);
         if(isNaN(timeOut)){
             alert("请输入数值或者数字字符型数据")
-            return;
         }
         config.type === config.type.toLocaleLowerCase()
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
