@@ -1,5 +1,8 @@
 <template>
-    <div class="about" id="charts"></div>
+    <div>
+        <div class="about" id="charts"></div>
+        <el-button>11232</el-button>
+    </div>
 </template>
 
 <script lang="ts">
