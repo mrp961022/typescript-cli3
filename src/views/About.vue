@@ -11,6 +11,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HighCharts from "highcharts";
+import highChartsSet from "highcharts/highcharts";
+typeof highChartsSet.defaultOptions.credits == "object"
+    ? highChartsSet.defaultOptions.credits.enabled
+    : "";
 @Component({
     name: "about"
 })
