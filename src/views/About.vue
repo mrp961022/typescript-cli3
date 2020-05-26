@@ -1,7 +1,10 @@
 <template>
     <div class="about">
         <div id="charts"></div>
-        <el-button>11232</el-button>
+        <div>
+            <el-button type="primary">确认</el-button>
+            <el-button>取消</el-button>
+        </div>
     </div>
 </template>
 
