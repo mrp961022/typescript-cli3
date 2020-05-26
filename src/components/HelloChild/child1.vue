@@ -6,7 +6,7 @@
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
 @Component({
-    name:'helloWorldChild1'
+    name:"helloWorldChild1"
 })
 export default class HelloWorld extends Vue {
     @Prop() private userName!: string; // prop入参

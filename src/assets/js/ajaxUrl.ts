@@ -16,24 +16,24 @@ export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
         let data = config.data || {};
         config.type == config.type.toLocaleLowerCase()
-        let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')
-        // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [['a',1],['b',2]]
+        let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
+        // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [["a",1],["b",2]]
         // 箭头函数不带大括号相当于{return ***}
         let xhr = new XMLHttpRequest();
-        if (config.type.toLocaleLowerCase() == 'get') {
-            xhr.open(config.type, `${config.url}${urlData ? "?" + urlData : ""}`, true);
+        if (config.type.toLocaleLowerCase() == "get") {
+            xhr.open(config.type, `${config.url}${urlData ? `?${urlData}` : ""}`, true);
         } else {
             xhr.open(config.type, `${config.url}`, true);
         }
         if (config.contentType) {
-            xhr.setRequestHeader('Content-Type', config.contentType)
+            xhr.setRequestHeader("Content-Type", config.contentType)
             xhr.send(urlData);
         } else {
-            xhr.send(config.type === 'get' ? null : JSON.stringify(data))
+            xhr.send(config.type === "get" ? null : JSON.stringify(data))
         }
         xhr.timeout = (config.timeOut || 6) * 1000;
         xhr.ontimeout = function (event) {
-            alert('请求超时！');
+            alert("请求超时！");
         }
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) { // ajax请求最后一步 一共四步
@@ -41,7 +41,7 @@ export function ajax(config: Config) {
                     resolve(xhr.responseText)
                 } else {
                     reject(`${config.type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
-                    if (xhr.statusText) { 
+                    if (xhr.statusText) {
                         alert(xhr.status) // 有返回值 5++ 4++ 状态报错
                     } else {
                         alert("断网啦！") // 没有返回值即为用户或服务器断网了

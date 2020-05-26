@@ -19,7 +19,7 @@ import { ajax } from "@/assets/js/ajaxUrl";
     },
     watch: {
         newHelloNum(newVal: number, oldVal: number): void {
-            console.log(oldVal + " " + newVal);
+            console.log(`${oldVal} ${newVal} 第二种`)
         }
     },
     props: {
@@ -62,7 +62,7 @@ export default class HelloWorld extends Vue {
     }
     @Watch("helloNum") // watch监听哪个
     getHelloNum(newVal: number, oldVal: number): void {
-        console.log(oldVal + " " + newVal);
+        console.log(`${oldVal} ${newVal} 第一种`)
     }
 }
 </script>
