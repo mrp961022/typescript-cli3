@@ -2,8 +2,8 @@
     <div class="about">
         <div id="charts"></div>
         <div>
-            <el-button type="primary">确认</el-button>
-            <el-button>取消</el-button>
+            <el-button @click="aa" type="primary">确认</el-button>
+            <el-button @click="bb">取消</el-button>
         </div>
     </div>
 </template>
@@ -74,6 +74,12 @@ export default class About extends Vue {
                 }
             ]
         } as object); // 或者 as object
+    }
+    aa(){
+        this.$store.commit('increment',222)
+    }
+    bb(){
+        console.log(this.$store.state.count)
     }
 }
 </script>
