@@ -1,5 +1,7 @@
 # typescript-cli3
 
+[![Join the chat at https://gitter.im/typescript-cli3/typescript-cli3](https://badges.gitter.im/typescript-cli3/typescript-cli3.svg)](https://gitter.im/typescript-cli3/typescript-cli3?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Project setup
 ```
 yarn install
