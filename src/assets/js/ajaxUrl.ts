@@ -16,27 +16,28 @@ export function ajax(config: Config) {
         let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
         // entries 将对象转成可迭代类型数据 数组中包含键和值 {a:1,b:2} => [["a",1],["b",2]]
         // 箭头函数不带大括号相当于{return ***}
-        let xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest(); // 创建xhr对象
         if (config.type.toLocaleLowerCase() === "get" && urlData) {
-            xhr.open(config.type, `${config.url}?${urlData}`, true);
+            xhr.open(config.type, `${config.url}?${urlData}`, true); // 设置请求方式、url、是否异步
+            // get有参数url请求头拼接参数
         } else {
-            xhr.open(config.type, config.url, true);
+            xhr.open(config.type, config.url, true); // post或者get没参数
         }
         if (config.contentType) {
-            xhr.setRequestHeader("Content-Type", config.contentType)
-            xhr.send(urlData);
+            xhr.setRequestHeader("Content-Type", config.contentType) // 设置请求头 例如postformdata类型需要修改请求头 get不需要
+            xhr.send(urlData); // 发送请求 post入参
         } else {
-            xhr.send(config.type === "get" ? null : JSON.stringify(data))
+            xhr.send(config.type === "get" ? null : JSON.stringify(data)) // get或者post application/json post入参
         }
         xhr.timeout = (timeOut || 6) * 1000;
-        xhr.ontimeout = (event) => {
+        xhr.ontimeout = (event) => { // 超时监听
             alert("请求超时！");
         }
-        xhr.onreadystatechange = () => {
+        xhr.onreadystatechange = () => { // 监听请求步骤
             if (xhr.readyState === 4) { // ajax请求最后一步 一共四步
                 if (xhr.status === 200) { // 状态码
                     resolve(xhr.responseText)
-                } else {
+                } else { // 最后一步且状态码不是200即为请求失败 处理报错
                     reject(`${config.type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
                     if (xhr.statusText) {
                         alert(xhr.status) // 有返回值 5++ 4++ 状态报错
