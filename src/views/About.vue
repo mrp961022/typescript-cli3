@@ -51,7 +51,7 @@ export default class About extends Vue {
     }
     aa() {
         // this.$store.commit("getCount", Math.ceil(Math.random() * 1000));
-        this.$store.commit("getJsonArray",{})
+        this.$store.commit("getJsonArray", {});
     }
     bb() {
         console.log(this.$store.state.jsonArray);
