@@ -2,6 +2,7 @@
     <div class="about">
         <div id="charts"></div>
         <div>
+            <el-button @click="bb">查询store</el-button>
             <el-button @click="aa" type="primary">确认</el-button>
             <el-button @click="data_data('sele')">取消</el-button>
         </div>
@@ -56,12 +57,15 @@ export default class About extends Vue {
         this.$store.commit("getJsonArray", {});
     }
     bb() {
-        console.log(this.$store.state.jsonArray);
+         MrpIndexDB.seleData("person","jsonArray").then(reponse=>{
+             this.$store.state.jsonArray=reponse
+             console.log(this.$store.state.jsonArray)
+         })
     }
     data_data(which: string) {
         switch (which) {
             case "sele":
-                MrpIndexDB.seleData("person", "我是key1");
+                MrpIndexDB.seleData("person", "jsonArray");
                 break;
             case "add":
                 MrpIndexDB.addData("person", {

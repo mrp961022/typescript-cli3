@@ -37,23 +37,25 @@ export namespace MrpIndexDB {
         }
     }
     // 查询
-    export function seleData(storename: string, key: string, ) {
+    export function seleData(storename: string, key: string) {
         /**
          * @param storename 表名
          * @param key 键值 用来查询对应数据
          */
-        let db: any = window.indexedDB.open(sessionStorage.DBName)
-        db.onsuccess = function () {
-            let store = db.result.transaction(storename, 'readwrite').objectStore(storename);
-            let request = store.get(key);
-            request.onerror = function () {
-                console.error('seleData error');
+        return new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+            let db: any = window.indexedDB.open(sessionStorage.DBName);
+            db.onsuccess = () => {
+                let store = db.result.transaction(storename, 'readwrite').objectStore(storename);
+                let request = store.get(key);
+                request.onerror = () => {
+                    reject('seleData error');
+                };
+                request.onsuccess = (event: any) => {
+                    let result = event.target.result;
+                    resolve(result ? result.value : result);
+                };
             };
-            request.onsuccess = function (event: any) {
-                let result = event.target.result;
-                console.log(result);
-            };
-        }
+        });
     }
     // 删除
     export function deleteData(storename: string, key: string) {
