@@ -3,7 +3,7 @@
         <div id="charts"></div>
         <div>
             <el-button @click="aa" type="primary">确认</el-button>
-            <el-button @click="bb">取消</el-button>
+            <el-button @click="data_data('sele')">取消</el-button>
         </div>
     </div>
 </template>
@@ -11,6 +11,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HighCharts from "highcharts";
+import { openDB, MrpIndexDB } from "@/assets/js/indexDB";
+openDB("mrpDB");
 @Component({
     name: "about"
 })
@@ -55,6 +57,22 @@ export default class About extends Vue {
     }
     bb() {
         console.log(this.$store.state.jsonArray);
+    }
+    data_data(which: string) {
+        switch (which) {
+            case "sele":
+                MrpIndexDB.seleData("person", "我是key1");
+                break;
+            case "add":
+                MrpIndexDB.addData("person", {
+                    key: "我是key1",
+                    value: [{ name: 1 }]
+                });
+                break;
+            case "dele":
+                MrpIndexDB.deleteData("person", "我是key2");
+                break;
+        }
     }
 }
 </script>
