@@ -57,10 +57,10 @@ export default class About extends Vue {
         this.$store.commit("getJsonArray", {});
     }
     bb() {
-         MrpIndexDB.seleData("person","jsonArray").then(reponse=>{
-             this.$store.state.jsonArray=reponse
-             console.log(this.$store.state.jsonArray)
-         })
+        MrpIndexDB.seleData("person", "jsonArray").then(reponse => {
+            this.$store.state.jsonArray = reponse;
+            console.log(this.$store.state.jsonArray);
+        });
     }
     data_data(which: string) {
         switch (which) {
