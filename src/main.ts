@@ -5,9 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import highChartsSet from "highcharts/highcharts";
-typeof highChartsSet.defaultOptions.credits === "object"
-  ? highChartsSet.defaultOptions.credits.enabled = false
-  : "";
+if (typeof highChartsSet.defaultOptions.credits === "object") highChartsSet.defaultOptions.credits.enabled = false
 
 Vue.config.productionTip = false
 Vue.component(Button.name, Button);
