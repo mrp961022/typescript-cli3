@@ -31,6 +31,7 @@ import { ajax } from "@/assets/js/ajaxUrl";
 })
 export default class HelloWorld extends Vue {
     @Prop() private msg!: string; // !表示父组件必传
+    @Prop() private newMsg?: string; // ? 不是必填
     helloNum: number = 0;
     newHelloNum: number = 0;
     mounted() {
