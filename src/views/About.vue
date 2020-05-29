@@ -3,7 +3,7 @@
         <div id="charts"></div>
         <div>
             <el-button @click="bb">查询store</el-button>
-            <!-- <el-button @click="createTab('little','key')">创建表格</el-button> -->
+            <el-button @click="createTab('little','key')">创建表格</el-button>
             <el-button @click="aa" type="primary">确认</el-button>
             <el-button @click="data_data('sele')">取消</el-button>
         </div>
