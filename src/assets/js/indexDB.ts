@@ -29,7 +29,7 @@ export namespace MrpIndexDB {
     export function deleDB(name: string) {
         window.indexedDB.deleteDatabase(name); // indexedDB是永远存在的存储 有时需要清除
     }
-    // 新建表 暂时有问题 不行 还是在库初始化的时候新建吧
+    // 新建表 要修改库的版本 监听版本变化 创建表格
     export function createTable(name: string, key: string) {
         /**
          * @param name 表名

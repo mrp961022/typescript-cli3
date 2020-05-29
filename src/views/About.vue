@@ -82,7 +82,7 @@ export default class About extends Vue {
         }
     }
     createTab(name: string, key: string) {
-        // 暂时有问题
+        // 暂时有问题 要修改库的版本
         /**
          * @param name 表名
          * @param key 键
