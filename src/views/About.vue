@@ -3,6 +3,7 @@
         <div id="charts"></div>
         <div>
             <el-button @click="bb">查询store</el-button>
+            <!-- <el-button @click="createTab('little','key')">创建表格</el-button> -->
             <el-button @click="aa" type="primary">确认</el-button>
             <el-button @click="data_data('sele')">取消</el-button>
         </div>
@@ -12,8 +13,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HighCharts from "highcharts";
-import { openDB, MrpIndexDB } from "@/assets/js/indexDB";
-openDB("mrpDB");
+import { MrpIndexDB } from "@/assets/js/indexDB";
+MrpIndexDB.openDB("mrpDB");
 @Component({
     name: "about"
 })
@@ -77,6 +78,14 @@ export default class About extends Vue {
                 MrpIndexDB.deleteData("person", "我是key2");
                 break;
         }
+    }
+    createTab(name: string, key: string) {
+        // 暂时有问题
+        /**
+         * @param name 表名
+         * @param key 键
+         */
+        MrpIndexDB.createTable(name, key);
     }
 }
 </script>
