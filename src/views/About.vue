@@ -66,7 +66,9 @@ export default class About extends Vue {
     data_data(which: string) {
         switch (which) {
             case "sele":
-                MrpIndexDB.seleData("person", "jsonArray");
+                MrpIndexDB.seleData("person", "jsonArray").then(response => {
+                    console.log(response);
+                });
                 break;
             case "add":
                 MrpIndexDB.addData("person", {
