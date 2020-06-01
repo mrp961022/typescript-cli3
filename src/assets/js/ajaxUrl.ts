@@ -27,11 +27,7 @@ export function ajax(config: Config) {
             xhr.setRequestHeader("Content-Type", config.contentType) // 设置请求头 例如postformdata类型需要修改请求头 get不需要
             xhr.send(urlData); // 发送请求 post入参
         } else {
-            if (data instanceof FormData) { // 判断如果传入formData类型数据就直接send
-                xhr.send(data)
-            } else {
-                xhr.send(config.type === "get" ? null : JSON.stringify(data)) // get或者post application/json post入参 
-            }
+            xhr.send(data instanceof FormData ? data : (config.type === "get" ? null : JSON.stringify(data))) // get或者post application/json post入参 
         }
         xhr.timeout = (timeOut || 6) * 1000;
         xhr.ontimeout = (event) => { // 超时监听
