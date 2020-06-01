@@ -58,7 +58,7 @@ export function ajax(config: Config) {
 export function upload(config: fileConfig) {
     return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
         let timeOut = Number(config.timeOut);
-        let xhr = new XMLHttpRequest;
+        let xhr = new XMLHttpRequest();
         xhr.open('post', config.url, true);
         xhr.send(config.data)
         xhr.timeout = (timeOut || 6) * 1000;
