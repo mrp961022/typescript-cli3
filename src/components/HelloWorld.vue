@@ -6,7 +6,7 @@
         <br />
         <!-- <el-upload action="dsafas/dsfasd/fsad">
             <i class="el-icon-plus"></i>
-        </el-upload> -->
+        </el-upload>-->
         <br />
         <button @click="newHelloNum++">另一种方式</button>
         <br />
@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import child1 from "./HelloChild/child1.vue";
-import { ajax, upload } from "@/assets/js/ajaxUrl";
+import { ajax } from "@/assets/js/ajaxUrl";
 import { Form } from "element-ui";
 @Component({
     name: "helloWorld",
@@ -143,7 +143,8 @@ export default class HelloWorld extends Vue {
         for (var i in this.fileList) {
             fileForm.append("files", this.fileList[i]);
         }
-        upload({
+        ajax({
+            type: "post",
             url: "http://localhost:8888/adfasdf/dasfsad", // vueCli3中静态json放在public中直接使用url访问
             timeOut: "6",
             data: fileForm

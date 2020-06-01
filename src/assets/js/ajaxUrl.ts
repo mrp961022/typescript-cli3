@@ -1,14 +1,9 @@
 interface Config {
     type: string; // get/post
     url: string; // url路径
-    data?: DataObj; // 入参 没有就不填
+    data?: DataObj | FormData; // 入参 没有就不填
     dataType?: string; // 返参类型
     contentType?: string; // 请求头 默认application/json
-    timeOut?: number | string; // 超时时间 默认6秒 单位秒
-}
-interface fileConfig { // 文件上传 post
-    url: string; // url路径
-    data: FormData; // 入参 formdata类型
     timeOut?: number | string; // 超时时间 默认6秒 单位秒
 }
 interface DataObj {
@@ -32,7 +27,11 @@ export function ajax(config: Config) {
             xhr.setRequestHeader("Content-Type", config.contentType) // 设置请求头 例如postformdata类型需要修改请求头 get不需要
             xhr.send(urlData); // 发送请求 post入参
         } else {
-            xhr.send(config.type === "get" ? null : JSON.stringify(data)) // get或者post application/json post入参
+            if (data instanceof FormData) { // 判断如果传入formData类型数据就直接send
+                xhr.send(data)
+            } else {
+                xhr.send(config.type === "get" ? null : JSON.stringify(data)) // get或者post application/json post入参 
+            }
         }
         xhr.timeout = (timeOut || 6) * 1000;
         xhr.ontimeout = (event) => { // 超时监听
@@ -54,31 +53,4 @@ export function ajax(config: Config) {
         }
     })
 
-}
-export function upload(config: fileConfig) {
-    return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
-        let timeOut = Number(config.timeOut);
-        let xhr = new XMLHttpRequest();
-        xhr.open('post', config.url, true);
-        xhr.send(config.data)
-        xhr.timeout = (timeOut || 6) * 1000;
-        xhr.ontimeout = (event) => { // 超时监听
-            alert("请求超时！");
-        }
-        xhr.onreadystatechange = () => { // 监听请求步骤
-            if (xhr.readyState === 4) { // ajax请求最后一步 一共四步
-                if (xhr.status === 200) { // 状态码
-                    resolve(xhr.responseText)
-                } else { // 最后一步且状态码不是200即为请求失败 处理报错
-                    reject(`POST ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
-                    if (xhr.statusText) {
-                        alert(xhr.status) // 有返回值 5++ 4++ 状态报错
-                    } else {
-                        alert("断网啦！") // 没有返回值即为用户或服务器断网了
-                    }
-                }
-            }
-        }
-
-    })
 }
