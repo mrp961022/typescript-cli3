@@ -1,6 +1,7 @@
 <template>
     <div class="hello">
         <child1 @editHandleEmit="editHandle" userName="老王" food="吃肉" />
+        <div title="计算属性">{{getComputedMsg}}</div>
         <button @click="helloNum++">点击切换触发watch</button>
         <br />
         <br />
@@ -56,6 +57,10 @@ export default class HelloWorld extends Vue {
     }
     editHandle(msg: string) {
         console.log(msg);
+    }
+    // 计算属性 computed
+    get getComputedMsg(): string {
+        return "abc";
     }
     @Watch("helloNum") // watch监听哪个
     getHelloNum(newVal: number, oldVal: number): void {
