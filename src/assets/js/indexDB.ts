@@ -87,7 +87,7 @@ export namespace MrpIndexDB {
          * @param key 键值 用于删除指定数据
          */
         let db: any = window.indexedDB.open(sessionStorage.DBName)
-        db.onsuccess = function () {
+        db.onsuccess = () => {
             let store = db.result.transaction(storename, "readwrite").objectStore(storename);
             store.delete(key)
             console.log("已删除存储空间" + storename + "中" + key + "记录");
