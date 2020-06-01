@@ -6,10 +6,10 @@ interface Config {
     contentType?: string; // 请求头 默认application/json
     timeOut?: number | string; // 超时时间 默认6秒 单位秒
 }
-interface fileConfig {
-    url: string;
-    data: FormData;
-    timeOut?: number | string;
+interface fileConfig { // 文件上传 post
+    url: string; // url路径
+    data: FormData; // 入参 formdata类型
+    timeOut?: number | string; // 超时时间 默认6秒 单位秒
 }
 interface DataObj {
     [index: string]: number | string | Array<string | number> // 定义入参类型
