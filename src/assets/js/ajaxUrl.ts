@@ -60,7 +60,7 @@ export function download(config: DownloadConfig) {
     // window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
     /**
      * @description 下载(本地)文件
-     * @description 可以支持各种在新页面打开的问题
+     * @description location.href有些文件会打开 不会下载 例如 json、图片、txt文件
      * @description download属性决定下载文件的文件名以及类型
      */
     var a = document.createElement("a");
@@ -71,7 +71,6 @@ export function download(config: DownloadConfig) {
     a.click();
     (document.getElementById("downloadFile") as any).remove();
     /**
-     * @description json文件 图片文件 文本 window.location.href会直接打开 建议改成文件流下载
      * @description post调用接口后端返回文件流使用
      * @description get直接下载就行了
      */
