@@ -57,18 +57,19 @@ export function ajax(config: Config) {
 export function download(config: DownloadConfig) {
     let data = config.data || {}, urlStr = `${config.url}`
     let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
-    window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
+    // window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
     /**
      * @description 下载(本地)文件
      * @description 可以支持各种在新页面打开的问题
+     * @description download属性决定下载文件的文件名以及类型
      */
-    // var a = document.createElement("a");
-    // a.id = "downloadFile"
-    // a.download = urlData ? `${urlStr}?${urlData}` : urlStr;
-    // a.href = urlData ? `${urlStr}?${urlData}` : urlStr;
-    // document.getElementsByTagName("body")[0].append(a); // 修复firefox中无法触发click
-    // a.click();
-    // (document.getElementById("downloadFile") as any).remove();
+    var a = document.createElement("a");
+    a.id = "downloadFile"
+    a.download = (urlData ? `${urlStr}?${urlData}` : urlStr).split('/').reverse()[0];
+    a.href = urlData ? `${urlStr}?${urlData}` : urlStr;
+    document.getElementsByTagName("body")[0].append(a); // 修复firefox中无法触发click
+    a.click();
+    (document.getElementById("downloadFile") as any).remove();
     /**
      * @description json文件 图片文件 文本 window.location.href会直接打开 建议改成文件流下载
      * @description post调用接口后端返回文件流使用
