@@ -58,4 +58,16 @@ export function download(config: DownloadConfig) {
     let data = config.data || {}, urlStr = `${config.url}`
     let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
     window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
+    /**
+     * post调用接口后端返回文件流使用
+     * get直接下载就行了
+     */
+    // var a = document.createElement("a");
+    // a.id = "downloadFile"
+    // a.download = urlData;
+    // let e: any = window.event;
+    // a.href = e.target.result;
+    // document.getElementsByTagName("body")[0].append(a); 
+    // a.click();
+    // (document.getElementById("downloadFile") as any).remove();
 }

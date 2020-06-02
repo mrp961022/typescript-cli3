@@ -159,7 +159,7 @@ export default class HelloWorld extends Vue {
     }
     downLoadFile() {
         download({
-            url: "http://localhost:8888/adfasdf/dasfsad",
+            url: "http://localhost:8888/county.json",
             // data: { name: 1, age: 2 }
         });
     }
