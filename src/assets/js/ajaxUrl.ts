@@ -59,7 +59,8 @@ export function download(config: DownloadConfig) {
     let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
     window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
     /**
-     * post调用接口后端返回文件流使用 json文件下载可以改成文件流
+     * json文件 图片文件 文本 window.location.href会直接打开 建议改成文件流下载
+     * post调用接口后端返回文件流使用
      * get直接下载就行了
      */
     // var a = document.createElement("a");
