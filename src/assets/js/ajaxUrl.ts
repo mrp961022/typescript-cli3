@@ -59,16 +59,35 @@ export function download(config: DownloadConfig) {
     let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
     window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
     /**
-     * json文件 图片文件 文本 window.location.href会直接打开 建议改成文件流下载
-     * post调用接口后端返回文件流使用
-     * get直接下载就行了
+     * @description 下载(本地)文件
+     * @description 可以支持各种在新页面打开的问题
      */
     // var a = document.createElement("a");
     // a.id = "downloadFile"
-    // a.download = urlData;
-    // let e: any = window.event;
-    // a.href = e.target.result;
-    // document.getElementsByTagName("body")[0].append(a); 
+    // a.download = urlData ? `${urlStr}?${urlData}` : urlStr;
+    // a.href = urlData ? `${urlStr}?${urlData}` : urlStr;
+    // document.getElementsByTagName("body")[0].append(a); // 修复firefox中无法触发click
     // a.click();
     // (document.getElementById("downloadFile") as any).remove();
+    /**
+     * @description json文件 图片文件 文本 window.location.href会直接打开 建议改成文件流下载
+     * @description post调用接口后端返回文件流使用
+     * @description get直接下载就行了
+     */
+    // if (xhr.status === 200) {// 成功
+    //     var blob = xhr.response;
+    //     var reader = new FileReader();
+    //     reader.readAsDataURL(blob); // 转换为base64，可以直接放入a表情href
+    //     reader.onload = function (e) {
+    //       // 转换完成，创建一个a标签用于下载
+    //       var a = document.createElement("a");
+    //       a.download = name + ".xls";
+    //       a.href = e.target.result;
+    //       $("body").append(a); 
+    //       a.click();
+    //       resolve(200)
+    //       $(a).remove();
+    //     };
+    //   }
+
 }
