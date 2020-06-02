@@ -6,6 +6,10 @@ interface Config {
     contentType?: string; // 请求头 默认application/json
     timeOut?: number | string; // 超时时间 默认6秒 单位秒
 }
+interface DownloadConfig {
+    url: string; // url路径
+    data?: DataObj; // 入参
+}
 interface DataObj {
     [index: string]: number | string | Array<string | number> // 定义入参类型
 }
@@ -49,4 +53,9 @@ export function ajax(config: Config) {
         }
     })
 
+}
+export function download(config: DownloadConfig) {
+    let data = config.data || {}, urlStr = `${config.url}`
+    let urlData: string = Object.entries(data).map(([key, val]) => `${key}=${val}`).join("&")
+    window.location.href = urlData ? `${urlStr}?${urlData}` : urlStr
 }

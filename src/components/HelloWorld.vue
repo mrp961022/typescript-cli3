@@ -33,13 +33,14 @@
             accept="image/png, image/jpeg, image/gif, image/jpg"
         />
         <el-button type="primary" @click="uploadFileNow">上传</el-button>
+        <el-button type="primary" @click="downLoadFile">下载文件</el-button>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import child1 from "./HelloChild/child1.vue";
-import { ajax } from "@/assets/js/ajaxUrl";
+import { ajax, download } from "@/assets/js/ajaxUrl";
 import { Form } from "element-ui";
 @Component({
     name: "helloWorld",
@@ -155,6 +156,12 @@ export default class HelloWorld extends Vue {
             .catch(reject => {
                 console.assert(!reject, reject);
             });
+    }
+    downLoadFile() {
+        download({
+            url: "http://localhost:8888/adfasdf/dasfsad",
+            // data: { name: 1, age: 2 }
+        });
     }
     // 计算属性 computed
     get getComputedMsg(): string {
