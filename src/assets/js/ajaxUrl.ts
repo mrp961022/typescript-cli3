@@ -1,3 +1,4 @@
+import router from '@/router'
 interface Config {
     type?: string; // get/post
     url: string; // url路径
@@ -12,6 +13,11 @@ interface DownloadConfig {
 }
 interface DataObj {
     [index: string]: number | string | Array<string | number> // 定义入参类型
+}
+enum StatusAll { // 枚举属性 主要用于存储状态码常量
+    success = 200,
+    notFind = 404,
+    serverError = 500
 }
 export function ajax(config: Config) {
     return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => { // 定义返回值类型为字符型
@@ -39,7 +45,13 @@ export function ajax(config: Config) {
         }
         xhr.onreadystatechange = () => { // 监听请求步骤
             if (xhr.readyState === 4) { // ajax请求最后一步 一共四步
-                if (xhr.status === 200) { // 状态码
+                if (xhr.status === StatusAll.success) { // 状态码
+                    // 登录的状态码
+                    let resErrorCode = JSON.parse(xhr.responseText).errorCode || "0001"
+                    console.log(resErrorCode)
+                    if (resErrorCode === '0001') {
+                        router.push('About')
+                    }
                     resolve(xhr.responseText)
                 } else { // 最后一步且状态码不是200即为请求失败 处理报错
                     reject(`${type.toLocaleUpperCase()} ${xhr.responseURL} ${xhr.status} (${xhr.statusText})`)
@@ -73,7 +85,7 @@ export function download(config: DownloadConfig) {
      * @description post调用接口后端返回文件流使用
      * @description get直接下载就行了
      */
-    // if (xhr.status === 200) {// 成功
+    // if (xhr.status === StatusAll.success) {// 成功
     //     let blob = xhr.response;
     //     let reader = new FileReader();
     //     reader.readAsDataURL(blob); // 转换为base64，可以直接放入a表情href
@@ -84,7 +96,7 @@ export function download(config: DownloadConfig) {
     //       a.href = e.target.result;
     //       $("body").append(a); 
     //       a.click();
-    //       resolve(200)
+    //       resolve(StatusAll.success)
     //       $(a).remove();
     //     };
     //   }

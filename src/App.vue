@@ -6,13 +6,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue";
-import '@/assets/css/style.css'
-@Component({
-    components: {
-        HelloWorld
-    }
-})
+import "@/assets/css/style.css";
+@Component
 export default class App extends Vue {}
 </script>
 
