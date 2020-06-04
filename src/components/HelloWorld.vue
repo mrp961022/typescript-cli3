@@ -44,9 +44,7 @@ import { ajax, download } from "@/assets/js/ajaxUrl";
 import { Form } from "element-ui";
 @Component({
     name: "helloWorld",
-    components: {
-        child1
-    },
+    components: { child1 },
     watch: {
         newHelloNum(newVal: number, oldVal: number): void {
             console.log(`${oldVal} ${newVal} 第二种`);
@@ -159,7 +157,7 @@ export default class HelloWorld extends Vue {
     }
     downLoadFile() {
         download({
-            url: "http://localhost:8888/county.json",
+            url: "http://localhost:8888/county.json"
             // data: { name: 1, age: 2 }
         });
     }
