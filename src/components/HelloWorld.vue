@@ -73,7 +73,7 @@ export default class HelloWorld extends Vue {
         console.log(`%c${this.msg}`, ConStyle);
         console.log(`%c${this.$props.isSix}`, ConStyle);
         ajax({
-            type: "get",
+            // type: "get",
             url: "http://localhost:8888/county.json", // vueCli3中静态json放在public中直接使用url访问
             timeOut: "6",
             data: { name: "1", age: 2, gender: "male" }
