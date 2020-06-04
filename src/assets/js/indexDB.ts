@@ -53,8 +53,9 @@ export namespace MrpIndexDB {
          * @param storename 表名
          * @param data 插入的数据 根据key名会自动判断 如果重复会修改 反之插入
          */
-        let db: any = window.indexedDB.open(sessionStorage.DBName, Number(sessionStorage.DBNum))
+        let db: any = window.indexedDB.open(sessionStorage.DBName)
         db.onsuccess = () => {
+            sessionStorage.DBNum = db.result.version.toString();
             let store = db.result.transaction(storename, "readwrite").objectStore(storename);
             store.put(data); // 有则改之 无则加勉
         }
@@ -66,8 +67,9 @@ export namespace MrpIndexDB {
          * @param key 键值 用来查询对应数据
          */
         return new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-            let db: any = window.indexedDB.open(sessionStorage.DBName, Number(sessionStorage.DBNum));
+            let db: any = window.indexedDB.open(sessionStorage.DBName);
             db.onsuccess = () => {
+                sessionStorage.DBNum = db.result.version.toString();
                 let store = db.result.transaction(storename, "readwrite").objectStore(storename);
                 let request = store.get(key);
                 request.onerror = () => {
@@ -86,8 +88,9 @@ export namespace MrpIndexDB {
          * @param storename 表名
          * @param key 键值 用于删除指定数据
          */
-        let db: any = window.indexedDB.open(sessionStorage.DBName, Number(sessionStorage.DBNum))
+        let db: any = window.indexedDB.open(sessionStorage.DBName)
         db.onsuccess = () => {
+            sessionStorage.DBNum = db.result.version.toString();
             let store = db.result.transaction(storename, "readwrite").objectStore(storename);
             store.delete(key)
             console.log("已删除存储空间" + storename + "中" + key + "记录");
