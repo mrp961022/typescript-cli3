@@ -47,10 +47,11 @@ export function ajax(config: Config) {
             if (xhr.readyState === 4) { // ajax请求最后一步 一共四步
                 if (xhr.status === StatusAll.success) { // 状态码
                     // 登录的状态码
-                    let resErrorCode = JSON.parse(xhr.responseText).errorCode || "0001"
+                    let resErrorCode = JSON.parse(xhr.responseText).errorCode || "0000"
                     console.log(resErrorCode)
                     if (resErrorCode === '0001') {
                         router.push('About')
+                        reject("登陆超时")
                     }
                     resolve(xhr.responseText)
                 } else { // 最后一步且状态码不是200即为请求失败 处理报错

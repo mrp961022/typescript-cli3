@@ -1,5 +1,5 @@
 {
-    "errorCode":"0000",
+    "errorCode":"0001",
     "data":[
         { "name": 1, "age": 2, "gender": "male", "num": "0001", "class": "1年3班" },
         { "name": 2, "age": 3, "gender": "feMale", "num": "0002", "class": "1年2班" },
