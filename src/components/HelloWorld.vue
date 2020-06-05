@@ -12,13 +12,19 @@
         <br />
         <br />
         <el-button @click="clickMrpFile">点击上传</el-button>
-        <ul>
-            <li v-for="(item,index) in fileList" :key="index">
+        <br />
+        <ul class="el-upload-list el-upload-list--text" style="width:300px;display:inline-block;">
+            <li
+                class="el-upload-list__item is-success"
+                v-for="(item,index) in fileList"
+                :key="index"
+            >
+                <a class="el-icon-document"></a>
                 {{item.name}}
                 <a
+                    style="font-weight:bold"
                     @click="removeFile(item.name)"
                     class="el-icon-close"
-                    style="font-weight:bold"
                 ></a>
             </li>
         </ul>
@@ -188,12 +194,14 @@ export default class HelloWorld extends Vue {
         // display: inline-block;
         // text-align: left;
         margin: 0 10px;
+        padding: 0 10px;
+        text-align: left;
     }
-    a {
-        // color: #42b983;
+    li:hover {
+        color: #409eff;
         cursor: pointer;
     }
-    a:hover {
+    .el-icon-close:hover {
         color: lightblue;
     }
 }
