@@ -32,7 +32,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 > 建议使用vscode、webstorm等编辑器中进行操作
 #### vue create 项目名
 #### 键盘上下箭头选择最后一个自定义
-#### 选上typescript 其他的根据需要选择 数字对应需要安装的依赖 全选 a(建议不要全选 太慢了)
+#### 选上typescript 其他的根据需要选择 数字对应需要安装的依赖（也可以上下选择需要的空格） 全选 a(建议不要全选 太慢了)
 #### 项目根目录新建 vue.config.js 设置配置项
 
 ```
