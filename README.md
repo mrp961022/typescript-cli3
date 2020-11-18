@@ -66,10 +66,11 @@ declare ***  // 忽略方法、变量等
         // 各种mixins混入
         // 注意混入的应当是class类为vue的ts
         // 声明vue组件的时注意首字母大写，不然eslint报错
-    ] 
+    ],
     components: {
         // 各种引入的vue组件
-    }
+    },
+    生命周期、watch、计算属性也可以放在这里
 })
 ```
 * mixins文件的写法
