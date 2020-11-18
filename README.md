@@ -62,6 +62,11 @@ declare ***  // 忽略方法、变量等
 * @Component 类装饰器，用于规范vue的实例类，可以直接使用@Component规范，也可以增加其他入参
 ```
 @Component({
+    mixins: [
+        // 各种mixins混入
+        // 注意混入的应当是class类为vue的ts
+        // 声明vue组件的时注意首字母大写，不然eslint报错
+    ] 
     components: {
         // 各种引入的vue组件
     }
