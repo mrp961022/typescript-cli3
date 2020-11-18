@@ -72,6 +72,26 @@ declare ***  // 忽略方法、变量等
     }
 })
 ```
+* mixins文件的写法
+```
+import { Vue, Component } from 'vue-property-decorator';
+
+// 注意要加上这句话，内容是所有的变量
+// 不然在混入的组件中使用变量会有报错警告
+declare module 'vue/types/vue' {
+    interface Vue {
+        value: string;
+    }
+}
+
+@Component
+export default class SomeyMixins extends Vue {
+    value = 'Hello';
+    eat() {
+        console.log('混入', this.value)
+    }
+}
+```
 
 * @Prop 属性装饰器，用于规定vue的入参的个数及格式
 ```
