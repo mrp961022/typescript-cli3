@@ -150,6 +150,42 @@ eat(dog: Animal) {
 ```
 > 参数是否必传，aa: string或者aa!: string必传，aa?:string = ""，有?或者有默认值可以不用传，但是如果传的话要注意类型
 
+### typescript关于接口的继承
+> 类继承接口 类里面需要实现接口规定的属性和方法
+```
+interface Animal {
+    name: string;
+    food: string;
+    eat(): string;
+}
+class Dog implements Animal {
+    constructor(name: string, food: string){
+        this.name = name;
+        this.food = food;
+    }
+    eat() {
+        return `${ this.name }吃${ this.food }`
+    }
+}
+```
+> 接口继承接口 
+```
+interface Animal {
+    name: string;
+}
+interface Dog extends Animal{
+    eat(): string;
+}
+class Hsq extends Dog {
+    construcotr(name: string) {
+        this.name = name;
+    }
+    eat() {
+        return `${ this.name }吃肉`
+    }
+}
+```
+
 ### typescript中的枚举 主要用于状态管理
 ```
 enum StatusAll {
