@@ -86,7 +86,7 @@ declare module 'vue/types/vue' {
 }
 
 @Component
-export default class SomeyMixins extends Vue {
+export default class SomeMixins extends Vue {
     value = 'Hello';
     eat() {
         console.log('混入', this.value)

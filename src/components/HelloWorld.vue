@@ -48,9 +48,11 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import child1 from "./HelloChild/child1.vue";
 import { ajax, download } from "@/assets/js/ajaxUrl";
 import { Form } from "element-ui";
+import { SomeMixins } from "@/assets/js/mixins/vueMixins"
 @Component({
     name: "helloWorld",
     components: { child1 },
+    mixins: [ SomeMixins ],
     watch: {
         newHelloNum(newVal: number, oldVal: number): void {
             console.log(`${oldVal} ${newVal} 第二种`);
